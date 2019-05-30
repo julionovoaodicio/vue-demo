@@ -16,9 +16,9 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="ti-panel"></i>
-              <p>Stats</p>
+              <p>{{$t('stats')}}</p>
             </a>
-          </li>
+          </li> 
           <drop-down class="nav-item"
                      title="5 Notifications"
                      title-classes="nav-link"
@@ -33,9 +33,16 @@
             <a href="#" class="nav-link">
               <i class="ti-settings"></i>
               <p>
-                Settings
+                {{$t('settings')}}
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <p-button 
+                  type="button"
+                  v-for="entry in languages" :key="entry.title"  @click.native.prevent="changeLocale(entry.language)">
+                  <flag :iso="entry.flag" :squared=false /> {{entry.title}}
+            </p-button>
           </li>
         </ul>
       </div>
@@ -51,7 +58,11 @@ export default {
   },
   data() {
     return {
-      activeNotifications: false
+      activeNotifications: false,
+      languages: [
+          { flag: 'us', language: 'en', title: 'English' },
+          { flag: 'es', language: 'es', title: 'Espa\u00f1ol' }
+        ]
     };
   },
   methods: {
@@ -69,6 +80,9 @@ export default {
     },
     hideSidebar() {
       this.$sidebar.displaySidebar(false);
+    },
+    changeLocale(locale) {
+        this.$i18n.locale = locale;
     }
   }
 };

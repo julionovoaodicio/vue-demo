@@ -23,7 +23,7 @@
     <div class="row">
 
       <div class="col-12">
-        <chart-card title="Users behavior"
+        <chart-card :title="this.$t('userBehavior')"
                     sub-title="24 Hours performance"
                     :chart-data="usersChart.data"
                     :chart-options="usersChart.options">
